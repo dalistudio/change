@@ -19,6 +19,10 @@ public:
 	char * Three2Three(char* str);
 	char * Two2Two(char* str);
 
+	char * CTool::Three2Three_D(char* str);
+	char * CTool::Three2Two_D(char* str);
+	char * CTool::Two2Two_D(char* str);
+
 	vector<CString> SplitCString(CString strSource, char ch);
 };
 

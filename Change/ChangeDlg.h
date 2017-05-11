@@ -66,6 +66,12 @@ public:
 	CButton m_c33;
 	// 2现转2定
 	CButton m_c22;
+	// 3定转3现
+	CButton m_d33;
+	// 3定转2现
+	CButton m_d32;
+	// 2定转2现
+	CButton m_d22;
 
 	vector<CString> CChangeDlg::SplitCString(CString strSource, char ch);
 

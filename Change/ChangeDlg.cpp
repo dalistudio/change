@@ -73,6 +73,9 @@ void CChangeDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_C00, m_c00);
 	DDX_Control(pDX, IDC_C33, m_c33);
 	DDX_Control(pDX, IDC_C22, m_c22);
+	DDX_Control(pDX, IDC_D33, m_d33);
+	DDX_Control(pDX, IDC_D32, m_d32);
+	DDX_Control(pDX, IDC_D22, m_d22);
 	DDX_Control(pDX, IDC_MONEY, m_money);
 	DDX_Control(pDX, IDC_QTY, m_qty);
 	DDX_Control(pDX, IDC_TOTAL, m_total);
@@ -254,7 +257,7 @@ void CChangeDlg::OnBnClickedChangeBut()
 	// TODO: 在此添加控件通知处理程序代码
 	m_QTY = 0;
 
-	if(m_c43.GetCheck()|| m_c32.GetCheck()||m_c34.GetCheck()||m_c23.GetCheck()||m_c24.GetCheck()||m_c42.GetCheck()||m_c00.GetCheck()||m_c33.GetCheck()||m_c22.GetCheck())
+	if(m_c43.GetCheck()|| m_c32.GetCheck()||m_c34.GetCheck()||m_c23.GetCheck()||m_c24.GetCheck()||m_c42.GetCheck()||m_c00.GetCheck()||m_c33.GetCheck()||m_c22.GetCheck()||m_d33.GetCheck()||m_d32.GetCheck()||m_d22.GetCheck())
 	{
 		// 必须选择一个转换类型
 		//
@@ -349,6 +352,24 @@ void CChangeDlg::OnBnClickedChangeBut()
 			if(m_c22.GetCheck())
 			{
 				a = tool->Two2Two(pValue);
+			}
+
+			// 3定转3现
+			if(m_d33.GetCheck())
+			{
+				a = tool->Three2Three_D(pValue);
+			}
+
+			// 3定转2现
+			if(m_d32.GetCheck())
+			{
+				a = tool->Three2Two_D(pValue);
+			}
+
+			// 2定转2现
+			if(m_d22.GetCheck())
+			{
+				a = tool->Two2Two_D(pValue);
 			}
 
 			// 将号码转换成数组

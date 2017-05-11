@@ -709,6 +709,161 @@ char * CTool::Two2Two(char* str){
 	return re;
 }
 
+/**
+* 三定转三现
+*/
+char * CTool::Three2Three_D(char* str){
+	// 只需将定位符号"X"找出来，然后取消掉就好
+	char dec[2] = ",";
+
+	char a[5] = ""; // 三字定号码
+	char b[5] = ""; // 临时号码
+
+	memcpy(&a,str,4);
+	
+	char *re = (char*)malloc(128); // 分配内存空间
+	memset(re,0,128); // 内存空间清零
+
+	if(a[0]=='X'){
+		b[0] = a[1];
+		b[1] = a[2];
+		b[2] = a[3];
+	}
+
+	if(a[1]=='X'){
+		b[0] = a[0];
+		b[1] = a[2];
+		b[2] = a[3];
+	}
+
+	if(a[2]=='X'){
+		b[0] = a[0];
+		b[1] = a[1];
+		b[2] = a[3];
+	}
+
+	if(a[3]=='X'){
+		b[0] = a[0];
+		b[1] = a[1];
+		b[2] = a[2];
+	}
+	strcat(re,(char*)&b);
+
+	return re;
+}
+
+/**
+* 三现转二定
+*/
+char * CTool::Three2Two_D(char* str){
+	// 三现转二定
+	// 123 转 123X  X123 1X23 12X3
+
+	char dec[2] = ",";
+
+	char a[5] = ""; // 三字定号码
+	char b1[5] = ""; // 临时号码
+	char b2[5] = ""; // 临时号码
+	char b3[5] = ""; // 临时号码
+	char b4[5] = ""; // 临时号码
+
+	memcpy(&a,str,4);
+	
+	char *re = (char*)malloc(128); // 分配内存空间
+	memset(re,0,128); // 内存空间清零
+
+	b1[0] = 'X';
+	b1[1] = a[0];
+	b1[2] = a[1];
+	b1[3] = a[2];
+
+	b2[0] = a[0];
+	b2[1] = 'X';
+	b2[2] = a[1];
+	b2[3] = a[2];
+
+	b3[0] = a[0];
+	b3[1] = a[1];
+	b3[2] = 'X';
+	b3[3] = a[2];
+
+	b4[0] = a[0];
+	b4[1] = a[1];
+	b4[2] = a[2];
+	b4[3] = 'X';
+
+	strcat(re,(char*)&b1);
+	strcat(re,(char*)&dec);
+	strcat(re,(char*)&b2);
+	strcat(re,(char*)&dec);
+	strcat(re,(char*)&b3);
+	strcat(re,(char*)&dec);
+	strcat(re,(char*)&b4);
+
+	return re;
+}
+
+/**
+* 二定转二现
+*/
+char * CTool::Two2Two_D(char* str){
+	// 只需将定位符号"X"找出来，然后取消掉就好
+	int pos = 0; // 用于表示共有几位有数字
+	char dec[2] = ",";
+
+	char a[5] = ""; // 二字定号码
+	char b[5] = ""; // 临时号码
+
+	memcpy(&a,str,4);
+	
+	char *re = (char*)malloc(128); // 分配内存空间
+	memset(re,0,128); // 内存空间清零
+
+	if(a[0]!='X'){
+		b[0] = a[0];
+		pos ++;
+	}
+
+	if(a[1]!='X'){
+		if(pos>0)
+		{
+			b[1] = a[1];
+		}
+		else
+		{
+			b[0] = a[1];
+			pos ++;
+		}
+		
+	}
+
+	if(a[2]!='X'){
+		if(pos>0)
+		{
+			b[1] = a[2];
+		}
+		else
+		{
+			b[0] = a[2];
+			pos ++;
+		}
+	}
+
+	if(a[3]!='X'){
+		if(pos>0)
+		{
+			b[1] = a[3];
+		}
+		else
+		{
+			b[0] = a[3];
+		}
+	}
+	strcat(re,(char*)&b);
+
+	return re;
+}
+
 vector<CString> CTool::SplitCString(CString strSource, char ch)
 {   
 	CString strTmp;   
